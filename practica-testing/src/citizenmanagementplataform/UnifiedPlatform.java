@@ -4,8 +4,10 @@ import data.DocPath;
 import data.Goal;
 import data.Nif;
 import data.SmallCode;
+import exceptions.NotValidPaymentDataException;
 import publicadministration.Citizen;
 import publicadministration.CreditCard;
+import exceptions.*;
 
 import java.util.*;
 

@@ -2,6 +2,7 @@ package services;
 
 import data.Nif;
 import data.SmallCode;
+import exceptions.*;
 
 import java.util.Date;
 
