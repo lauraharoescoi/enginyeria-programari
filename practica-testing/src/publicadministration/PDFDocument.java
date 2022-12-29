@@ -1,3 +1,5 @@
+package publicadministration;
+
 import data.DocPath;
 import exceptions.BadPathException;
 
@@ -12,7 +14,7 @@ public class PDFDocument {
     private DocPath path;
     private File file;
 
-    public PDFDocument () {
+    public PDFDocument() {
         this.creatDate = new Date();
         this.path = null;
         this.file = null;

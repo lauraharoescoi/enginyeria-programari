@@ -1,3 +1,5 @@
+package publicadministration;
+
 import java.util.Date;
 import java.util.HashMap;
 
@@ -6,7 +8,7 @@ public class CrimConvictionsColl {
     HashMap<Date, CrimConviction> crimes;
     int numCrimes;
 
-    public CrimConvictionsColl (){
+    public CrimConvictionsColl(){
         crimes = new HashMap<>();
         numCrimes = 0;
     }

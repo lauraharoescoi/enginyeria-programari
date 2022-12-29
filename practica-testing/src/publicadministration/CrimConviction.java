@@ -1,3 +1,5 @@
+package publicadministration;
+
 import java.util.Date;
 
 public class CrimConviction {
@@ -6,7 +8,7 @@ public class CrimConviction {
     private final String offense;
     private final String sentence;
 
-    public CrimConviction (Date commit, String off, String sentc){
+    public CrimConviction(Date commit, String off, String sentc){
         this.commitDate = commit;
         this.offense = off;
         this.sentence = sentc;
