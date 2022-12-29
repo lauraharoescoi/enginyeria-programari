@@ -1,5 +1,8 @@
 package datatest;
+import data.DocPath;
 import data.Nif;
+import exceptions.BadPathException;
+import exceptions.DigitalSignatureException;
 import exceptions.IncorrectNifException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,39 +17,45 @@ public class NifTest {
     }
 
     @Test
-    void testShortNif () throws IncorrectNifException {
+    void testShortNif (){
         Nif nif = new Nif("1234567A");
-        assertEquals("1234567A", nif.getNif());
+        Throwable exception = assertThrows(IncorrectNifException.class, nif::getNif);
+        assertEquals("The NIF is incorrect", exception.getMessage());
     }
 
     @Test
-    void testLongNif () throws IncorrectNifException {
+    void testLongNif (){
         Nif nif = new Nif("123456789A");
-        assertEquals("123456789A", nif.getNif());
+        Throwable exception = assertThrows(IncorrectNifException.class, nif::getNif);
+        assertEquals("The NIF is incorrect", exception.getMessage());
     }
 
     @Test
-    void testNifWithLetters () throws IncorrectNifException {
+    void testNifWithLetters (){
         Nif nif = new Nif("1234567Aa");
-        assertEquals("1234567Aa", nif.getNif());
+        Throwable exception = assertThrows(IncorrectNifException.class, nif::getNif);
+        assertEquals("The NIF is incorrect", exception.getMessage());
     }
 
     @Test
-    void testNifWithNumbers () throws IncorrectNifException {
+    void testNifWithNumbers (){
         Nif nif = new Nif("1234567A1");
-        assertEquals("1234567A1", nif.getNif());
+        Throwable exception = assertThrows(IncorrectNifException.class, nif::getNif);
+        assertEquals("The NIF is incorrect", exception.getMessage());
     }
 
     @Test
-    void testNullNif () throws IncorrectNifException {
+    void testNullNif (){
         Nif nif = new Nif(null);
-        assertNull(nif.getNif());
+        Throwable exception = assertThrows(IncorrectNifException.class, nif::getNif);
+        assertEquals("The NIF is incorrect", exception.getMessage());
     }
 
     @Test
-    void testEmptyNif () throws IncorrectNifException {
+    void testEmptyNif (){
         Nif nif = new Nif("");
-        assertEquals("", nif.getNif());
+        Throwable exception = assertThrows(IncorrectNifException.class, nif::getNif);
+        assertEquals("The NIF is incorrect", exception.getMessage());
     }
 
 }

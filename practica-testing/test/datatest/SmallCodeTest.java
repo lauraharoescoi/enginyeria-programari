@@ -1,5 +1,8 @@
 package datatest;
+import data.DocPath;
 import data.SmallCode;
+import exceptions.BadPathException;
+import exceptions.InvalidPassword;
 import exceptions.SmallCodeException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,21 +16,31 @@ public class SmallCodeTest {
     }
 
     @Test
-    void testShortSmallCode() throws SmallCodeException {
+    void testShortSmallCode(){
         SmallCode smallCode = new SmallCode("12");
-        assertEquals("12", smallCode.getCode());
+        Throwable exception = assertThrows(SmallCodeException.class, smallCode::getCode);
+        assertEquals("CVS code must be 3 digits", exception.getMessage());
     }
 
     @Test
-    void testLongSmallCode() throws SmallCodeException {
+    void testLongSmallCode(){
         SmallCode smallCode = new SmallCode("1234");
-        assertEquals("1234", smallCode.getCode());
+        Throwable exception = assertThrows(SmallCodeException.class, smallCode::getCode);
+        assertEquals("CVS code must be 3 digits", exception.getMessage());
     }
 
     @Test
-    void testSmallCodeWithLetters() throws SmallCodeException {
+    void testSmallCodeWithLetters(){
         SmallCode smallCode = new SmallCode("12a");
-        assertEquals("12a", smallCode.getCode());
+        Throwable exception = assertThrows(SmallCodeException.class, smallCode::getCode);
+        assertEquals("CVS code must be 3 digits", exception.getMessage());
+    }
+
+    @Test
+    void testCodeCannotBeNull(){
+        SmallCode smallCode = new SmallCode(null);
+        Throwable exception = assertThrows(SmallCodeException.class, smallCode::getCode);
+        assertEquals("CVS code must be 3 digits", exception.getMessage());
     }
 
 }

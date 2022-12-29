@@ -8,6 +8,7 @@ public class SmallCode {
     public SmallCode (String code) { this.code = code; }
 
     public String getCode () throws SmallCodeException {
+        if (code == null) throw new SmallCodeException();
         if (code.length() != 3) throw new SmallCodeException();
         for (int i = 0; i < 3; i++) {
             if (!Character.isDigit(code.charAt(i))) throw new SmallCodeException();

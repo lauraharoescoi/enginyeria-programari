@@ -6,6 +6,6 @@ import exceptions.*;
 
 public interface JusticeMinistry {
 
-    CriminalRecordCertf getCriminalRecordCertf (Citizen persD, Goal g) throws DigitalSignatureException,ConnectException;
+    //CriminalRecordCertf getCriminalRecordCertf (Citizen persD, Goal g) throws DigitalSignatureException,ConnectException;
 
 }

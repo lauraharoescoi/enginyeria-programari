@@ -10,6 +10,7 @@ public class Nif {
 
 
     public String getNif () throws IncorrectNifException {
+        if (nif == null) throw new IncorrectNifException();
         if (nif.length() != 9) throw new IncorrectNifException();
         if (!Character.isLetter(nif.charAt(8))) throw new IncorrectNifException();
         for (int i = 0; i < 8; i++) {

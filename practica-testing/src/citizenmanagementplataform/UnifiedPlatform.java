@@ -10,7 +10,7 @@ import publicadministration.CreditCard;
 import exceptions.*;
 
 import java.util.*;
-
+/*
 public class UnifiedPlatform {
 
     // Input events
@@ -43,3 +43,4 @@ public class UnifiedPlatform {
 
     private void printDocument (DocPath path) { . . . } throws BadPathException, PrintingException;
 }
+*/
