@@ -2,6 +2,6 @@ package exceptions;
 
 public class SmallCodeException extends Exception {
     public SmallCodeException() {
-        super("guarra");
+        super("CVS code must be 3 digits");
     }
 }

@@ -1,11 +1,17 @@
 package data;
 
+import exceptions.DigitalSignatureException;
+
 public class DigitalSignature {
+
     private final Byte[] signature;
 
     public DigitalSignature (Byte[] signature) { this.signature = signature; }
 
-    public Byte[] getSignature () { return signature; }
+    public Byte[] getSignature () throws DigitalSignatureException {
+        if (signature == null) throw new DigitalSignatureException();
+        return signature;
+    }
 
     @Override
     public boolean equals (Object o) {

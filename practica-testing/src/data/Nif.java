@@ -8,6 +8,7 @@ public class Nif {
 
     public Nif (String code) { this.nif = code; }
 
+
     public String getNif () throws IncorrectNifException {
         if (nif.length() != 9) throw new IncorrectNifException();
         if (!Character.isLetter(nif.charAt(8))) throw new IncorrectNifException();

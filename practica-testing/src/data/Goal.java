@@ -1,5 +1,5 @@
 package data;
-import data.goalTypes;
+import exceptions.NullGoalTypeException;
 
 public class Goal {
     private final goalTypes goalType;
@@ -8,10 +8,8 @@ public class Goal {
         this.goalType = goalType;
     }
 
-    public goalTypes getGoalType () {
-        if (goalType == null) {
-            throw new IllegalArgumentException("Goal type is null");
-        }
+    public goalTypes getGoalType () throws NullGoalTypeException {
+        if (goalType == null) throw new NullGoalTypeException();
         return goalType;
     }
 

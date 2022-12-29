@@ -2,6 +2,6 @@ package exceptions;
 
 public class NifNotRegisteredException extends Exception {
     public NifNotRegisteredException() {
-        super("guarra");
+        super("NIF not registered");
     }
 }

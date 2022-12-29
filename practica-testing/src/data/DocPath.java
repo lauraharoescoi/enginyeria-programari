@@ -1,11 +1,16 @@
 package data;
 
+import exceptions.BadPathException;
+
 public class DocPath {
     private final String path;
 
     public DocPath (String path) { this.path = path; }
 
-    public String getPath () { return path; }
+    public String getPath () throws BadPathException {
+        if (path == null) throw new BadPathException();
+        return path;
+    }
 
     @Override
     public boolean equals (Object o) {
