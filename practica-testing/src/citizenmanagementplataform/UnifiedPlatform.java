@@ -1,16 +1,13 @@
 package citizenmanagementplataform;
 
-import data.DocPath;
-import data.Goal;
-import data.Nif;
-import data.SmallCode;
+import data.*;
 import exceptions.NotValidPaymentDataException;
 import publicadministration.Citizen;
 import publicadministration.CreditCard;
 import exceptions.*;
 
 import java.util.*;
-/*
+
 public class UnifiedPlatform {
 
     // Input events
@@ -43,4 +40,3 @@ public class UnifiedPlatform {
 
     private void printDocument (DocPath path) { . . . } throws BadPathException, PrintingException;
 }
-*/
