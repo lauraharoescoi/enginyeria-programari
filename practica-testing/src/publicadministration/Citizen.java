@@ -13,13 +13,13 @@ public class Citizen {
     private String phoneNumber;
     private CreditCard credCard;
 
-    public Citizen(String name, String add, String mobile, Nif nif, Date expDate, CreditCard credCard){
-        this.name = name;
-        this.nif = nif;
-        this.address = add;
-        this.phoneNumber = mobile;
-        this.valDate = expDate;
-        this.credCard =credCard;
+    public Citizen(){
+        this.name = null;
+        this.nif = null;
+        this.address = null;
+        this.phoneNumber = null;
+        this.valDate = null;
+        this.credCard =null;
     }
 
     public Nif getNif() { return nif; }
