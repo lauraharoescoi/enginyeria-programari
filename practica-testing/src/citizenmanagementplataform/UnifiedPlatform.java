@@ -14,6 +14,7 @@ public class UnifiedPlatform {
 
     //The class members
     Citizen citz;
+    private GPD policeDepartment;
     private Byte authMethod;
     private boolean executing;
     private states currentState;
@@ -69,7 +70,9 @@ public class UnifiedPlatform {
         }
     }
 
-    private void enterForm (Citizen citz, Goal goal) { . . . } throws IncompleteFormException, IncorrectVerificationException, ConnectException;
+    private void enterForm (Citizen citz, Goal goal) throws IncompleteFormException, IncorrectVerificationException, ConnectException{
+        policeDepartment.verifyData(citz, goal);
+    }
 
     private void realizePayment () { . . . };
 
