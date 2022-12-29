@@ -5,21 +5,47 @@ import exceptions.NotValidPaymentDataException;
 import publicadministration.Citizen;
 import publicadministration.CreditCard;
 import exceptions.*;
+import publicadministration.*;
+import services.*;
 
 import java.util.*;
 
 public class UnifiedPlatform {
 
+    //The class members
+    private Byte authMethod;
+    private boolean executing;
+    private states currentState;
+
+
+    public UnifiedPlatform (){
+        currentState = states.START;
+    }
+
     // Input events
-    public void selectJusMin () { . . . };
+    public void selectJusMin () throws ProceduralException {
+        if(currentState != states.START) throw new ProceduralException();
+        currentState = states.SELECTEDJUSTMIN;
+    };
 
-    public void selectProcedures () { . . . };
+    public void selectProcedures () throws ProceduralException {
+        if (currentState != states.SELECTEDJUSTMIN) throw new ProceduralException();
+        currentState = states.SELECTINGPROCEDURES;
+    };
 
-    public void selectCriminalReportCertf () { . . . };
+    public void selectCriminalReportCertf () throws ProceduralException {
+        if (currentState != states.SELECTINGPROCEDURES) throw new ProceduralException();
+        currentState = states.SELECTEDCRIMINALREPORTCERTF;
+    };
 
-    public void selectAuthMethod (byte opc) { . . . };
+    public void selectAuthMethod (byte opc) {
+        this.authMethod = opc;
+    };
 
-    public void enterNIFandPINobt (Nif nif, Date valDate) { . . . } throws NifNotRegisteredException, IncorrectValDateException, AnyMobileRegisteredException, ConnectException;
+    public void enterNIFandPINobt (Nif nif, Date valDate) throws ProceduralException, NifNotRegisteredException, IncorrectValDateException, AnyMobileRegisteredException, ConnectException {
+        if (!executing && authMethod != 0) throw new ProceduralException();
+
+    }
 
     public void enterPIN (SmallCode pin) { . . . } throws NotValidPINException, ConnectException;
 
