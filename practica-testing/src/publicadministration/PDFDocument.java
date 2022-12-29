@@ -6,31 +6,44 @@ import exceptions.BadPathException;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 
-public class PDFDocument {
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
+public class  PDFDocument {
+    private static final String DEF_PATH = "./PDFdoc.pdf";
     private Date creatDate;
     private DocPath path;
     private File file;
 
-    public PDFDocument() {
-        this.creatDate = new Date();
-        this.path = null;
-        this.file = null;
+    public PDFDocument() throws BadPathException {
+        creatDate = new Date();
+        path = new DocPath(DEF_PATH);
+        file = new File(path.getPath());
     }
 
     public String toString () {
-        return "PDFDocument{" + "creatDate=" + creatDate + ", path=" + path + ", file=" + file + '}';
+        return "PDFDocument{" + "creatDate=" + creatDate.toString() + ", path=" + path.toString() +'}';
     }
 
-    public void moveDoc(DocPath destPath) throws IOException {
+    public void moveDoc(DocPath destPath) throws IOException, BadPathException {
+        if(!new File(destPath.getPath()).exists()) throw new IOException("No s'ha trobat el path");
+        else{
+            Path sourcePath = Paths.get(path.getPath());
+            Path newPath = Paths.get(destPath.getPath());
+            Files.move(sourcePath, newPath, REPLACE_EXISTING);
+            System.out.println("Document en path:" + path.getPath() + ", mogut a " + destPath.getPath());
+            path = destPath;
+        }
 
     }
 
     public void openDoc(DocPath path) throws IOException, BadPathException {
         if (!Desktop.isDesktopSupported()) {
-            System.out.println("Desktop is not supported");
+            throw new IOException("Desktop not supported.");
         } else {
             file = new File(path.getPath());
             Desktop.getDesktop().open(file);
