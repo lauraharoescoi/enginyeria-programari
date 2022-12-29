@@ -18,6 +18,4 @@ public class CriminalRecordCertf extends PDFDocument {
         this.digSign = ds;
         this.crimConvs = crmC;
     }
-
-
 }
