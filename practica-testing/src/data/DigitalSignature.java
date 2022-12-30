@@ -1,6 +1,6 @@
 package data;
 
-import exceptions.DigitalSignatureException;
+import data.exceptions.DigitalSignatureException;
 
 public class DigitalSignature {
 

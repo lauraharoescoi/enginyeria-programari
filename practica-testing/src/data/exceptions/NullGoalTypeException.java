@@ -1,4 +1,4 @@
-package exceptions;
+package data.exceptions;
 
 public class NullGoalTypeException extends Exception {
     public NullGoalTypeException() {

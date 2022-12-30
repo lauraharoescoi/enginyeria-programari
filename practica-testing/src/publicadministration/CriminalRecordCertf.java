@@ -3,7 +3,7 @@ package publicadministration;
 import data.DigitalSignature;
 import data.Goal;
 import data.Nif;
-import exceptions.BadPathException;
+import data.exceptions.BadPathException;
 
 public class CriminalRecordCertf extends PDFDocument {
     private Nif nif;

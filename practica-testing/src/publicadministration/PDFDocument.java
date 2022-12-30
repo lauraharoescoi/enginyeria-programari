@@ -1,7 +1,7 @@
 package publicadministration;
 
 import data.DocPath;
-import exceptions.BadPathException;
+import data.exceptions.BadPathException;
 
 import java.awt.*;
 import java.io.File;

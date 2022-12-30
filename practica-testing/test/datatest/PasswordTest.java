@@ -1,9 +1,6 @@
 package datatest;
-import data.DocPath;
 import data.Password;
-import exceptions.BadPathException;
-import exceptions.IncorrectNifException;
-import exceptions.InvalidPassword;
+import data.exceptions.InvalidPassword;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

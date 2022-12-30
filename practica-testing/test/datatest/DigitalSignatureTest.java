@@ -1,10 +1,7 @@
 package datatest;
 import data.DigitalSignature;
-import data.DocPath;
-import exceptions.DigitalSignatureException;
+import data.exceptions.DigitalSignatureException;
 import org.junit.jupiter.api.Test;
-
-import java.security.Signature;
 
 import static org.junit.jupiter.api.Assertions.*;
 

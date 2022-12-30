@@ -1,10 +1,6 @@
 package datatest;
-import data.DocPath;
 import data.Nif;
-import exceptions.BadPathException;
-import exceptions.DigitalSignatureException;
-import exceptions.IncorrectNifException;
-import org.junit.jupiter.api.BeforeEach;
+import data.exceptions.IncorrectNifException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
