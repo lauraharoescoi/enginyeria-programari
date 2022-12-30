@@ -49,4 +49,7 @@ public class  PDFDocument {
             Desktop.getDesktop().open(file);
         }
     }
+    public DocPath getPath() {
+        return path;
+    }
 }

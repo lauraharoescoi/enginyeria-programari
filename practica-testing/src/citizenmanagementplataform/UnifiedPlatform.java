@@ -8,6 +8,7 @@ import exceptions.*;
 import publicadministration.*;
 import services.*;
 
+import java.io.IOException;
 import java.util.*;
 
 public class UnifiedPlatform {
@@ -19,7 +20,7 @@ public class UnifiedPlatform {
     private boolean executing;
     private states currentState;
     private CertificationAuthority certMethod;
-
+    private JusticeMinistry ministryMethod;
     public UnifiedPlatform (){
         this.citz = new Citizen();
         currentState = states.START;
@@ -82,14 +83,30 @@ public class UnifiedPlatform {
 
     }
 
-    private void obtainCertificate () { . . . } throws BadPathException, DigitalSignatureException, ConnectException;
+    private void obtainCertificate () throws ProceduralException, IOException, BadPathException, DigitalSignatureException, ConnectException{
+        if (currentState != states.OBTAININGCERT) throw new ProceduralException();
+        CriminalRecordCertf certificate = ministryMethod.getCriminalRecordCertf(citz,);
+        openDocument(certificate.getPath());
 
-    private void printDocument () { . . . } throws BadPathException, PrintingException;
+
+    }
+
+    private void printDocument () throws BadPathException, PrintingException{
+        //Al pdf diu k no fa falta implementacio???
+    }
 
     // Other internal operations (not required)
-    private void registerPayment () { . . . };
+    private void registerPayment () {
+        //Al pdf diu k no fa falta implementacio???
+    };
 
-    private void openDocument (DocPath path) { . . . } throws BadPathException;
+    private void openDocument (DocPath path) throws BadPathException, IOException {
+        PDFDocument certPDF = new PDFDocument();
+        certPDF.openDoc(path);
 
-    private void printDocument (DocPath path) { . . . } throws BadPathException, PrintingException;
+    }
+
+    private void printDocument (DocPath path)throws BadPathException, PrintingException {
+        //Al pdf diu k no fa falta implementacio???
+    }
 }
