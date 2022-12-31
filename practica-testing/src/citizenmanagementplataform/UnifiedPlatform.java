@@ -146,12 +146,11 @@ public class UnifiedPlatform {
     private void registerPayment () throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("Not required");
         //Al pdf diu k no fa falta implementacio???
-    };
+    }
 
     private void openDocument (DocPath path) throws BadPathException, IOException {
         PDFDocument certPDF = new PDFDocument();
         certPDF.openDoc(path);
-
     }
 
     private void printDocument (DocPath path)throws BadPathException, PrintingException {
