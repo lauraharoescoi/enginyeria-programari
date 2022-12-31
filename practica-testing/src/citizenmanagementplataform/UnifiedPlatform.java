@@ -11,6 +11,7 @@ import publicadministration.CreditCard;
 import exceptions.*;
 import publicadministration.*;
 import services.*;
+import dummies.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +41,6 @@ public class UnifiedPlatform {
         currentState = states.START;
         this.localPath = new DocPath("./TemporaryPDF");
         this.ministryMethod = new JusticeMinistryDumm();
-        this.paymentAuthority = new CASDumm();
     }
 
     // Input events
@@ -111,6 +111,7 @@ public class UnifiedPlatform {
 
     private void enterCardData (CreditCard cardD) throws IncompleteFormException, NotValidPaymentDataException, InsufficientBalanceException, ConnectException, ProceduralException {
         if (currentState != states.ENTERCARDDATA) throw new ProceduralException();
+        this.paymentAuthority = new CASDumm(cardD);
         CreditCard card = new CreditCard(cardD.getNif(), cardD.getCardNumb(), cardD.getExpirDate(), cardD.getSvc());
         citz.setCredCard(card);
         Integer reference = 100000000 + (int)(Math.random() * 999999999);
