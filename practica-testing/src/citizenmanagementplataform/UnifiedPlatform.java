@@ -48,7 +48,7 @@ public class UnifiedPlatform {
         this.authMethod = opc;
     };
 
-    public void enterNIFandPINobt (Nif nif, Date valDate) throws ProceduralException, NifNotRegisteredException, IncorrectValDateException, AnyMobileRegisteredException, ConnectException {
+    public void enterNIFandPINobt (Nif nif, Date valDate) throws ProceduralException, NifNotRegisteredException, IncorrectValDateException, AnyMobileRegisteredException, ConnectException, IncorrectNifException {
         if (currentState == states.SELECTEDCRIMINALREPORTCERTF && authMethod != 0) throw new ProceduralException();
         citz.setNif(nif);  // We set the citizen nif to the one we got through parameter
         citz.setValDate(valDate);  // We set the citizen validation date to the one we got through parameter
