@@ -26,7 +26,6 @@ public class UnifiedPlatform {
     private final BigDecimal cost = new BigDecimal(3.86);
     Citizen citz;
     private GPD policeDepartment;
-    private Byte authMethod;
     private states currentState;
     private CertificationAuthority certMethod;
     private JusticeMinistry ministryMethod;
@@ -35,10 +34,23 @@ public class UnifiedPlatform {
     private DocPath localPath;
     private CardPayment currentPayment;
 
+    public ArrayList<String> possibleAuthMethods;
+
     public UnifiedPlatform (){
         this.citz = new Citizen();
         currentState = states.START;
         this.localPath = new DocPath("./TemporaryPDF");
+
+        this.possibleAuthMethods = new ArrayList<>();
+        setAuthMethods();
+    }
+
+    private void setAuthMethods() {
+        possibleAuthMethods.add("Cl@ve PIN");
+        possibleAuthMethods.add("Cl@ve Permanente");
+        possibleAuthMethods.add("Certificado digital");
+
+        // WE COULD ADD MORE METHODS //
     }
 
     // Input events
@@ -62,12 +74,14 @@ public class UnifiedPlatform {
 
     public void selectAuthMethod (byte opc) throws ProceduralException {
         if (currentState != states.SELECTINGAUTHMETHOD) throw new ProceduralException();
-        this.authMethod = opc;
+        // ASSUMING THAT AUTH METHODS IN THE DICTIONARY WILL BE ON THE SAME ORDER AS IN THE WEB PAGE
+        String selectedAuthMethod = possibleAuthMethods.get(opc - 1);
+        System.out.println("[P] Es selecciona el mètode d'autenticació " + selectedAuthMethod);
     };
 
     public void enterNIFandPINobt (Nif nif, Date valDate) throws ProceduralException, NifNotRegisteredException, IncorrectValDateException, AnyMobileRegisteredException, ConnectException, IncorrectNifException {
 
-        if (currentState == states.SELECTINGAUTHMETHOD && authMethod != 0) throw new ProceduralException();
+        if (currentState == states.SELECTINGAUTHMETHOD) throw new ProceduralException();
         citz.setNif(nif);  // We set the citizen nif to the one we got through parameter
         citz.setValDate(valDate);  // We set the citizen validation date to the one we got through parameter
         boolean res = certMethod.sendPIN(nif, valDate);
@@ -80,7 +94,7 @@ public class UnifiedPlatform {
     }
 
     public void enterPIN (SmallCode pin) throws NotValidPINException, ConnectException, ProceduralException {
-        if (currentState == states.ENTERPIN && authMethod != 0) throw new ProceduralException();
+        if (currentState == states.ENTERPIN) throw new ProceduralException();
         boolean res = certMethod.checkPIN(citz.getNif(), pin);
         if (res) {
             System.out.println("[P] El PIN introduït correspon al generat pel sistema per aquest ciutadà i encara està vigent");
