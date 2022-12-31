@@ -1,6 +1,6 @@
 package data;
 
-import exceptions.BadPathException;
+import data.exceptions.BadPathException;
 
 public class DocPath {
     private final String path;

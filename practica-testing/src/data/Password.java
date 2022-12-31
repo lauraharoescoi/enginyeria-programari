@@ -1,6 +1,6 @@
 package data;
 
-import exceptions.InvalidPassword;
+import data.exceptions.InvalidPassword;
 
 public class Password {
     private final String password;

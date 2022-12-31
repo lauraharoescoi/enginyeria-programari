@@ -1,6 +1,6 @@
 package data;
 
-import exceptions.SmallCodeException;
+import data.exceptions.SmallCodeException;
 
 public class SmallCode {
     private final String code;

@@ -1,5 +1,5 @@
 package data;
-import exceptions.NullGoalTypeException;
+import data.exceptions.NullGoalTypeException;
 
 public class Goal {
     private final goalTypes goalType;

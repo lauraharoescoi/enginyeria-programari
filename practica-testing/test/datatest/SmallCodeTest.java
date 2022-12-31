@@ -1,9 +1,6 @@
 package datatest;
-import data.DocPath;
 import data.SmallCode;
-import exceptions.BadPathException;
-import exceptions.InvalidPassword;
-import exceptions.SmallCodeException;
+import data.exceptions.SmallCodeException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

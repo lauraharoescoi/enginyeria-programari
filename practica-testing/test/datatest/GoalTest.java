@@ -1,8 +1,6 @@
 package datatest;
-import data.DocPath;
 import data.Goal;
-import exceptions.BadPathException;
-import exceptions.NullGoalTypeException;
+import data.exceptions.NullGoalTypeException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

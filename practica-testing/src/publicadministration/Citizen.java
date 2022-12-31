@@ -12,6 +12,8 @@ public class Citizen {
     private String address;
     private String phoneNumber;
     private CreditCard credCard;
+    private CardPayment latestPayment;
+
 
     public Citizen(){
         this.name = null;
@@ -38,6 +40,10 @@ public class Citizen {
         return phoneNumber;
     }
 
+    public CardPayment getLatesPayment() {
+        return latestPayment;
+    }
+
     public String toString () {
         return "Person{" +
                 "nif=" + nif.toString() +
@@ -54,5 +60,7 @@ public class Citizen {
     public void setValDate(Date valDate) { this.valDate = valDate; }
 
     public void setCredCard(CreditCard credCard) { this.credCard = credCard; }
+
+    public void setLatesPayment(CardPayment cPay) { this.latestPayment = cPay; }
 
 }

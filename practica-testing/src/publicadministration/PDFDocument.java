@@ -1,7 +1,7 @@
 package publicadministration;
 
 import data.DocPath;
-import exceptions.BadPathException;
+import data.exceptions.BadPathException;
 
 import java.awt.*;
 import java.io.File;
@@ -48,5 +48,8 @@ public class  PDFDocument {
             file = new File(path.getPath());
             Desktop.getDesktop().open(file);
         }
+    }
+    public DocPath getPath() {
+        return path;
     }
 }
