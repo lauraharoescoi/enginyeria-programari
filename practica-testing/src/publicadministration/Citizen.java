@@ -40,6 +40,10 @@ public class Citizen {
         return phoneNumber;
     }
 
+    public CreditCard getCredCard() {
+        return credCard;
+    }
+
     public CardPayment getLatesPayment() {
         return latestPayment;
     }
@@ -57,10 +61,26 @@ public class Citizen {
 
     public void setNif(Nif nif) { this.nif = nif; }
 
+    public void setName(String name) { this.name = name; }
+
+    public void setAddress(String address) { this.address = address; }
+
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
     public void setValDate(Date valDate) { this.valDate = valDate; }
 
     public void setCredCard(CreditCard credCard) { this.credCard = credCard; }
 
     public void setLatesPayment(CardPayment cPay) { this.latestPayment = cPay; }
+
+    public void copyCitizen(Citizen c) {
+        this.nif = c.getNif();
+        this.valDate = c.getExpDate();
+        this.name = c.getName();
+        this.address = c.getAddress();
+        this.phoneNumber = c.getMobileNumb();
+        this.credCard = c.getCredCard();
+        this.latestPayment = c.getLatesPayment();
+    }
 
 }

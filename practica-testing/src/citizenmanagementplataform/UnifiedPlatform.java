@@ -25,8 +25,8 @@ public class UnifiedPlatform {
     //The class members
     private final BigDecimal cost = new BigDecimal(3.86);
     Citizen citz;
-    private GPD policeDepartment;
     private states currentState;
+    private GPD policeDepartment;
     private CertificationAuthority certMethod;
     private JusticeMinistry ministryMethod;
     private CAS paymentAuthority;
@@ -34,23 +34,13 @@ public class UnifiedPlatform {
     private DocPath localPath;
     private CardPayment currentPayment;
 
-    public ArrayList<String> possibleAuthMethods;
 
     public UnifiedPlatform (){
         this.citz = new Citizen();
         currentState = states.START;
         this.localPath = new DocPath("./TemporaryPDF");
-
-        this.possibleAuthMethods = new ArrayList<>();
-        setAuthMethods();
-    }
-
-    private void setAuthMethods() {
-        possibleAuthMethods.add("Cl@ve PIN");
-        possibleAuthMethods.add("Cl@ve Permanente");
-        possibleAuthMethods.add("Certificado digital");
-
-        // WE COULD ADD MORE METHODS //
+        this.ministryMethod = new JusticeMinistryDumm();
+        this.paymentAuthority = new CASDumm();
     }
 
     // Input events
@@ -75,8 +65,8 @@ public class UnifiedPlatform {
     public void selectAuthMethod (byte opc) throws ProceduralException {
         if (currentState != states.SELECTINGAUTHMETHOD) throw new ProceduralException();
         // ASSUMING THAT AUTH METHODS IN THE DICTIONARY WILL BE ON THE SAME ORDER AS IN THE WEB PAGE
-        String selectedAuthMethod = possibleAuthMethods.get(opc - 1);
-        System.out.println("[P] Es selecciona el mètode d'autenticació " + selectedAuthMethod);
+        System.out.println("Es selecciona el mètode d'autenticació Cl@ve Pin");
+        certMethod = new CertificationAuthorityDumm(citz);
     };
 
     public void enterNIFandPINobt (Nif nif, Date valDate) throws ProceduralException, NifNotRegisteredException, IncorrectValDateException, AnyMobileRegisteredException, ConnectException, IncorrectNifException {
@@ -106,8 +96,11 @@ public class UnifiedPlatform {
 
     private void enterForm (Citizen citz, Goal goal) throws IncompleteFormException, IncorrectVerificationException, ConnectException, ProceduralException {
         if (currentState != states.ENTERFORM) throw new ProceduralException();
-        policeDepartment.verifyData(citz, goal);
+        Citizen tempCitz = new Citizen();
+        tempCitz.copyCitizen(citz);
         this.goal = goal;
+        policeDepartment.verifyData(tempCitz, goal);
+
         currentState = states.REALIZINGPAYMENT;
     }
 
