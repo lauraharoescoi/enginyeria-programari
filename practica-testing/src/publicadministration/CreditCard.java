@@ -44,4 +44,15 @@ public class CreditCard {
                 ", svc=" + svc.toString() +
                 '}';
     } // converts to String
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CreditCard that = (CreditCard) o;
+        return nif.equals(that.nif) &&
+                cardNumb.equals(that.cardNumb) &&
+                expirDate.equals(that.expirDate) &&
+                svc.equals(that.svc);
+    }
 }

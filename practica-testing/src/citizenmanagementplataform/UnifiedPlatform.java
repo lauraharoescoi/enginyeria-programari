@@ -96,6 +96,7 @@ public class UnifiedPlatform {
 
     private void enterForm (Citizen citz, Goal goal) throws IncompleteFormException, IncorrectVerificationException, ConnectException, ProceduralException {
         if (currentState != states.ENTERFORM) throw new ProceduralException();
+        policeDepartment = new GPDDumm(citz);
         Citizen tempCitz = new Citizen();
         tempCitz.copyCitizen(citz);
         this.goal = goal;
@@ -116,7 +117,7 @@ public class UnifiedPlatform {
         citz.setCredCard(card);
         Integer reference = 100000000 + (int)(Math.random() * 999999999);
         CardPayment cPay = new CardPayment(citz.getNif(), cost, java.sql.Date.valueOf(java.time.LocalDate.now()), reference.toString());
-        citz.setLatesPayment(cPay);
+        citz.setLatestPayment(cPay);
 
         paymentAuthority.askForApproval(cPay.getReference(), card, cPay.getDate(), cPay.getImp());
 

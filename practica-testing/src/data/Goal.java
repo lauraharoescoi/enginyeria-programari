@@ -1,7 +1,7 @@
 package data;
 import data.exceptions.NullGoalTypeException;
 
-public class Goal {`
+public class Goal {
     private final goalTypes goalType;
 
     public Goal (goalTypes goalType ) {

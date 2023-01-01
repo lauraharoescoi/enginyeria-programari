@@ -14,7 +14,7 @@ import java.util.Date;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class  PDFDocument {
-    private static final String DEF_PATH = "./PDFdoc.pdf";
+    private static final String DEF_PATH = "PDFdoc.pdf";
     private Date creatDate;
     private DocPath path;
     private File file;
@@ -23,10 +23,6 @@ public class  PDFDocument {
         creatDate = new Date();
         path = new DocPath(DEF_PATH);
         file = new File(path.getPath());
-    }
-
-    public String toString () {
-        return "PDFDocument{" + "creatDate=" + creatDate.toString() + ", path=" + path.toString() +'}';
     }
 
     public void moveDoc(DocPath destPath) throws IOException, BadPathException {
@@ -51,5 +47,9 @@ public class  PDFDocument {
     }
     public DocPath getPath() {
         return path;
+    }
+
+    public String toString () {
+        return "PDFDocument{" + "creatDate=" + creatDate.toString() + ", path=" + path.toString() +'}';
     }
 }

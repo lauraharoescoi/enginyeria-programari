@@ -44,7 +44,7 @@ public class Citizen {
         return credCard;
     }
 
-    public CardPayment getLatesPayment() {
+    public CardPayment getLatestPayment() {
         return latestPayment;
     }
 
@@ -71,7 +71,7 @@ public class Citizen {
 
     public void setCredCard(CreditCard credCard) { this.credCard = credCard; }
 
-    public void setLatesPayment(CardPayment cPay) { this.latestPayment = cPay; }
+    public void setLatestPayment(CardPayment cPay) { this.latestPayment = cPay; }
 
     public void copyCitizen(Citizen c) {
         this.nif = c.getNif();
@@ -80,7 +80,7 @@ public class Citizen {
         this.address = c.getAddress();
         this.phoneNumber = c.getMobileNumb();
         this.credCard = c.getCredCard();
-        this.latestPayment = c.getLatesPayment();
+        this.latestPayment = c.getLatestPayment();
     }
 
 }

@@ -3,7 +3,7 @@ package publicadministration;
 import data.Nif;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 public class CardPayment {
 
@@ -45,4 +45,15 @@ public class CardPayment {
                 ", imp=" + imp.toString() +
                 '}';
     } // converts to String
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CardPayment that = (CardPayment) o;
+        return reference.equals(that.reference) &&
+                nif.equals(that.nif) &&
+                date.equals(that.date) &&
+                imp.equals(that.imp);
+    }
 }

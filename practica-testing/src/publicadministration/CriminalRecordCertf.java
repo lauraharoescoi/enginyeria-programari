@@ -24,6 +24,8 @@ public class CriminalRecordCertf extends PDFDocument {
         this.crimConvs = crmC;
     }
 
+    //setter methods
+
     public void setDate(Date date) { this.setDate(date); }
 
     public void setPath(DocPath path) { this.setPath(path); }
@@ -33,4 +35,19 @@ public class CriminalRecordCertf extends PDFDocument {
     public void setNif(Nif nif) { this.nif = nif; }
 
     public void setPayment(CardPayment payment) { this.payment = payment; }
+
+    //getter methods
+
+    public Nif getNif() { return nif; }
+
+    public String getName() { return name; }
+
+    public Goal getGoal() { return goal; }
+
+    public DigitalSignature getDigSign() { return digSign; }
+
+    public CrimConvictionsColl getCrimConvs() { return crimConvs; }
+
+    public CardPayment getPayment() { return payment; }
+
 }
