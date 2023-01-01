@@ -11,15 +11,12 @@ import publicadministration.CreditCard;
 import exceptions.*;
 import publicadministration.*;
 import services.*;
-import dummies.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.*;
 import java.lang.Math;
 import java.sql.Date;
-import java.time.*;
 
 public class UnifiedPlatform {
 
@@ -27,10 +24,12 @@ public class UnifiedPlatform {
     private final BigDecimal cost = new BigDecimal(3.86);
     Citizen citz;
     private states currentState;
+
     private GPD policeDepartment;
     private CertificationAuthority certMethod;
     private JusticeMinistry ministryMethod;
     private CAS paymentAuthority;
+
     private Goal goal;
     private DocPath localPath;
     private CardPayment currentPayment;
@@ -40,7 +39,6 @@ public class UnifiedPlatform {
         this.citz = new Citizen();
         currentState = states.START;
         this.localPath = new DocPath("./TemporaryPDF");
-        this.ministryMethod = new JusticeMinistryDumm();
     }
 
     // Input events
@@ -66,7 +64,6 @@ public class UnifiedPlatform {
         if (currentState != states.SELECTINGAUTHMETHOD) throw new ProceduralException();
         // ASSUMING THAT AUTH METHODS IN THE DICTIONARY WILL BE ON THE SAME ORDER AS IN THE WEB PAGE
         System.out.println("Es selecciona el mètode d'autenticació Cl@ve Pin");
-        certMethod = new CertificationAuthorityDumm(citz);
     };
 
     public void enterNIFandPINobt (Nif nif, Date valDate) throws ProceduralException, NifNotRegisteredException, IncorrectValDateException, AnyMobileRegisteredException, ConnectException, IncorrectNifException {
@@ -96,7 +93,6 @@ public class UnifiedPlatform {
 
     private void enterForm (Citizen citz, Goal goal) throws IncompleteFormException, IncorrectVerificationException, ConnectException, ProceduralException {
         if (currentState != states.ENTERFORM) throw new ProceduralException();
-        policeDepartment = new GPDDumm(citz);
         Citizen tempCitz = new Citizen();
         tempCitz.copyCitizen(citz);
         this.goal = goal;
@@ -112,7 +108,6 @@ public class UnifiedPlatform {
 
     private void enterCardData (CreditCard cardD) throws IncompleteFormException, NotValidPaymentDataException, InsufficientBalanceException, ConnectException, ProceduralException {
         if (currentState != states.ENTERCARDDATA) throw new ProceduralException();
-        this.paymentAuthority = new CASDumm(cardD);
         CreditCard card = new CreditCard(cardD.getNif(), cardD.getCardNumb(), cardD.getExpirDate(), cardD.getSvc());
         citz.setCredCard(card);
         Integer reference = 100000000 + (int)(Math.random() * 999999999);
@@ -136,6 +131,22 @@ public class UnifiedPlatform {
         doc.setPayment(currentPayment);
         openDocument(doc.getPath());
         currentState = states.PRINTINGDOCUMENT;
+    }
+
+    public void injectAuthenticationMethod(CertificationAuthority method) {
+        this.certMethod = method;
+    }
+
+    public void injectGPD(GPD method) {
+        this.policeDepartment = method;
+    }
+
+    public void injectCAS(CAS method) {
+        this.paymentAuthority = method;
+    }
+
+    public void injectJusticeMinistry(JusticeMinistry method) {
+        this.ministryMethod = method;
     }
 
     // Other internal operations (not required)
