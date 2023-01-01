@@ -25,6 +25,18 @@ public class  PDFDocument {
         file = new File(path.getPath());
     }
 
+    //setter methods
+    public void setDate(Date date) { this.creatDate = date; }
+
+    public void setPath(DocPath path) { this.path = path; }
+
+    //getter methods
+    public Date getDate() { return creatDate; }
+
+    public DocPath getPath() { return path; }
+
+
+
     public void moveDoc(DocPath destPath) throws IOException, BadPathException {
         if(!new File(destPath.getPath()).exists()) throw new IOException("No s'ha trobat el path");
         else{
@@ -44,9 +56,6 @@ public class  PDFDocument {
             file = new File(path.getPath());
             Desktop.getDesktop().open(file);
         }
-    }
-    public DocPath getPath() {
-        return path;
     }
 
     public String toString () {

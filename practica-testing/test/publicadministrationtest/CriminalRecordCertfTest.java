@@ -1,10 +1,7 @@
 package publicadministrationtest;
 
-import data.DigitalSignature;
-import data.Goal;
-import data.Nif;
+import data.*;
 import data.exceptions.BadPathException;
-import data.goalTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import publicadministration.CardPayment;
@@ -67,5 +64,43 @@ public class CriminalRecordCertfTest {
     void testGetPayment() {
         assertEquals(payment, criminalRecordCertf.getPayment());
     }
+
+    //test setters
+
+    @Test
+    void testSetDate() {
+        Date date = new Date();
+        criminalRecordCertf.setDate(date);
+        assertEquals(date, criminalRecordCertf.getDate());
+    }
+
+    @Test
+    void testSetPath() {
+        DocPath path = new DocPath("./");
+        criminalRecordCertf.setPath(path);
+        assertEquals(path, criminalRecordCertf.getPath());
+    }
+
+    @Test
+    void testSetGoal() {
+        Goal goal = new Goal(goalTypes.WORKWITHMINORS);
+        criminalRecordCertf.setGoal(goal);
+        assertEquals(goal, criminalRecordCertf.getGoal());
+    }
+
+    @Test
+    void testSetNif() {
+        Nif nif = new Nif("12345678B");
+        criminalRecordCertf.setNif(nif);
+        assertEquals(nif, criminalRecordCertf.getNif());
+    }
+
+    @Test
+    void testSetName() {
+        String name = "John";
+        criminalRecordCertf.setName(name);
+        assertEquals(name, criminalRecordCertf.getName());
+    }
+
 
 }

@@ -5,7 +5,7 @@ import data.DocPath;
 import data.Goal;
 import data.Nif;
 import data.exceptions.BadPathException;
-import java.sql.Date;
+import java.util.Date;
 
 public class CriminalRecordCertf extends PDFDocument {
     private Nif nif;
@@ -26,15 +26,17 @@ public class CriminalRecordCertf extends PDFDocument {
 
     //setter methods
 
-    public void setDate(Date date) { this.setDate(date); }
+    public void setDate(Date date) { super.setDate(date); }
 
-    public void setPath(DocPath path) { this.setPath(path); }
+    public void setPath(DocPath path) { super.setPath(path); }
 
     public void setGoal(Goal goal) { this.goal = goal; }
 
     public void setNif(Nif nif) { this.nif = nif; }
 
     public void setPayment(CardPayment payment) { this.payment = payment; }
+
+    public void setName(String name) { this.name = name; }
 
     //getter methods
 
@@ -49,5 +51,7 @@ public class CriminalRecordCertf extends PDFDocument {
     public CrimConvictionsColl getCrimConvs() { return crimConvs; }
 
     public CardPayment getPayment() { return payment; }
+
+    public Date getDate() { return super.getDate(); }
 
 }
