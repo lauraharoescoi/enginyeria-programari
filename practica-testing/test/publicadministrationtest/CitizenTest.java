@@ -2,6 +2,7 @@ package publicadministrationtest;
 
 import data.Nif;
 import data.SmallCode;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import publicadministration.CardPayment;
 import publicadministration.Citizen;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class CitizenTest {
     Citizen citizen;
@@ -19,7 +21,7 @@ public class CitizenTest {
     private BigDecimal imp;
 
     @BeforeEach
-    void setup() {
+    public void setUp() {
         citizen = new Citizen();
         date = new Date();
         citizen.setNif(new Nif("12345678A"));
@@ -65,7 +67,5 @@ public class CitizenTest {
     void testGetLatestPayment() {
         assertEquals(citizen.getLatestPayment(), citizen.getLatestPayment());
     }
-
-
 
 }

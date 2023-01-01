@@ -18,7 +18,7 @@ public class CreditCardTest {
     SmallCode svc;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         nif = new Nif("12345678A");
         cardNumb = "1234567890123456";
         expirDate = new Date();

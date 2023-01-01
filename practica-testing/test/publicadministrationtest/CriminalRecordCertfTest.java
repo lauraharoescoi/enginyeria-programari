@@ -27,7 +27,7 @@ public class CriminalRecordCertfTest {
     CardPayment payment;
 
     @BeforeEach
-    void setup() throws BadPathException {
+    public void setUp() throws BadPathException {
         nif = new Nif("12345678A");
         name = "John";
         goal = new Goal(goalTypes.WORKWITHMINORS);

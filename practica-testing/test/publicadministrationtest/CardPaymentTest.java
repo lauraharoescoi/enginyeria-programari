@@ -18,7 +18,7 @@ public class CardPaymentTest {
     String reference;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         nif = new Nif("12345678A");
         imp = new BigDecimal(100);
         date = new Date();

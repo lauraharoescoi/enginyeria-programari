@@ -16,7 +16,7 @@ public class CrimConvictionsCollTest {
     int numCrimes;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         crimConvictionsColl = new CrimConvictionsColl();
         crimConviction = new CrimConviction(new Date(), "Robo", "Prision");
         numCrimes = 0;

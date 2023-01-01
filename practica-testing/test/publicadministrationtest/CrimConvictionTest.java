@@ -15,7 +15,7 @@ public class CrimConvictionTest {
     Date date;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         date = new Date();
         crimConviction = new CrimConviction(date, "Robo", "Prision");
     }
