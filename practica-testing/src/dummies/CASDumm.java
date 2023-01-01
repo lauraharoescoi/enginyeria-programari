@@ -24,7 +24,7 @@ public class CASDumm  implements CAS {
     public boolean askForApproval(String nTrans, CreditCard cardData, Date date, BigDecimal imp) throws NotValidPaymentDataException, InsufficientBalanceException, ConnectException {
         if(creditCard.getCardNumb()!=cardData.getCardNumb()) throw new NotValidPaymentDataException();
         if(creditCard.getExpirDate()!=cardData.getExpirDate()) throw new NotValidPaymentDataException();
-        if (creditCard.getSvc()!=cardData.getSvc())throw new NotValidPaymentDataException();
+        if (creditCard.getSvc()!=cardData.getSvc()) throw new NotValidPaymentDataException();
         return true;
     }
 }

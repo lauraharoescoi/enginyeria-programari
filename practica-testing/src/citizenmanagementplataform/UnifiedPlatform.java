@@ -4,6 +4,7 @@ import data.*;
 import data.exceptions.BadPathException;
 import data.exceptions.DigitalSignatureException;
 import data.exceptions.IncorrectNifException;
+import data.exceptions.SmallCodeException;
 import exceptions.NotValidPaymentDataException;
 import jdk.jshell.spi.ExecutionControl;
 import publicadministration.Citizen;
@@ -16,7 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.lang.Math;
-import java.sql.Date;
+import java.util.Date;
 
 public class UnifiedPlatform {
 
@@ -38,7 +39,7 @@ public class UnifiedPlatform {
     public UnifiedPlatform (){
         this.citz = new Citizen();
         currentState = states.START;
-        this.localPath = new DocPath("./TemporaryPDF");
+        this.localPath = new DocPath("./Temporary.pdf");
     }
 
     // Input events
@@ -64,11 +65,12 @@ public class UnifiedPlatform {
         if (currentState != states.SELECTINGAUTHMETHOD) throw new ProceduralException();
         // ASSUMING THAT AUTH METHODS IN THE DICTIONARY WILL BE ON THE SAME ORDER AS IN THE WEB PAGE
         System.out.println("Es selecciona el mètode d'autenticació Cl@ve Pin");
+        currentState = states.ENTERPIN;
     };
 
     public void enterNIFandPINobt (Nif nif, Date valDate) throws ProceduralException, NifNotRegisteredException, IncorrectValDateException, AnyMobileRegisteredException, ConnectException, IncorrectNifException {
 
-        if (currentState == states.SELECTINGAUTHMETHOD) throw new ProceduralException();
+        if (currentState != states.ENTERPIN) throw new ProceduralException();
         citz.setNif(nif);  // We set the citizen nif to the one we got through parameter
         citz.setValDate(valDate);  // We set the citizen validation date to the one we got through parameter
         boolean res = certMethod.sendPIN(nif, valDate);
@@ -77,11 +79,10 @@ public class UnifiedPlatform {
         } else {
             throw new ConnectException();
         }
-        currentState = states.ENTERPIN;
     }
 
-    public void enterPIN (SmallCode pin) throws NotValidPINException, ConnectException, ProceduralException {
-        if (currentState == states.ENTERPIN) throw new ProceduralException();
+    public void enterPIN (SmallCode pin) throws NotValidPINException, ConnectException, ProceduralException, SmallCodeException {
+        if (currentState != states.ENTERPIN) throw new ProceduralException();
         boolean res = certMethod.checkPIN(citz.getNif(), pin);
         if (res) {
             System.out.println("[P] El PIN introduït correspon al generat pel sistema per aquest ciutadà i encara està vigent");
@@ -91,7 +92,7 @@ public class UnifiedPlatform {
         currentState = states.ENTERFORM;
     }
 
-    private void enterForm (Citizen citz, Goal goal) throws IncompleteFormException, IncorrectVerificationException, ConnectException, ProceduralException {
+    public void enterForm (Citizen citz, Goal goal) throws IncompleteFormException, IncorrectVerificationException, ConnectException, ProceduralException {
         if (currentState != states.ENTERFORM) throw new ProceduralException();
         Citizen tempCitz = new Citizen();
         tempCitz.copyCitizen(citz);
@@ -101,12 +102,13 @@ public class UnifiedPlatform {
         currentState = states.REALIZINGPAYMENT;
     }
 
-    private void realizePayment () throws ProceduralException {
+    public void realizePayment () throws ProceduralException {
         if (currentState != states.REALIZINGPAYMENT) throw new ProceduralException();
+        System.out.println("Es selecciona l'opció realitzar pagament");
         currentState = states.ENTERCARDDATA;
     }
 
-    private void enterCardData (CreditCard cardD) throws IncompleteFormException, NotValidPaymentDataException, InsufficientBalanceException, ConnectException, ProceduralException {
+    public void enterCardData (CreditCard cardD) throws IncompleteFormException, NotValidPaymentDataException, InsufficientBalanceException, ConnectException, ProceduralException {
         if (currentState != states.ENTERCARDDATA) throw new ProceduralException();
         CreditCard card = new CreditCard(cardD.getNif(), cardD.getCardNumb(), cardD.getExpirDate(), cardD.getSvc());
         citz.setCredCard(card);
@@ -121,7 +123,7 @@ public class UnifiedPlatform {
         currentState = states.OBTAININGCERTIFICATE;
     }
 
-    private void obtainCertificate () throws ProceduralException, IOException, BadPathException, DigitalSignatureException, ConnectException{
+    public void obtainCertificate () throws ProceduralException, IOException, BadPathException, DigitalSignatureException, ConnectException{
         if (currentState != states.OBTAININGCERTIFICATE) throw new ProceduralException();
         CriminalRecordCertf doc = ministryMethod.getCriminalRecordCertf(citz, goal);
         doc.setPath(localPath);
@@ -131,6 +133,7 @@ public class UnifiedPlatform {
         doc.setPayment(currentPayment);
         openDocument(doc.getPath());
         currentState = states.PRINTINGDOCUMENT;
+        System.out.println("Printing document . . .");
     }
 
     public void injectAuthenticationMethod(CertificationAuthority method) {

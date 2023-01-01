@@ -3,6 +3,7 @@ package publicadministration;
 import data.Nif;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Citizen {
 
@@ -83,4 +84,16 @@ public class Citizen {
         this.latestPayment = c.getLatestPayment();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Citizen)) return false;
+        Citizen citizen = (Citizen) o;
+        return Objects.equals(nif, citizen.nif) && Objects.equals(valDate, citizen.valDate) && Objects.equals(name, citizen.name) && Objects.equals(address, citizen.address) && Objects.equals(phoneNumber, citizen.phoneNumber) && Objects.equals(credCard, citizen.credCard) && Objects.equals(latestPayment, citizen.latestPayment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nif, valDate, name, address, phoneNumber, credCard, latestPayment);
+    }
 }

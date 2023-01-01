@@ -7,10 +7,10 @@ import java.util.Date;
 
 public class CreditCard {
 
-    private final Nif nif; // The nif of the user
-    private final String cardNumb; // The number of the credit card
-    private final Date expirDate; // The expiration date for the credit card
-    private final SmallCode svc; // The Safe Verification Code
+    private Nif nif; // The nif of the user
+    private String cardNumb; // The number of the credit card
+    private Date expirDate; // The expiration date for the credit card
+    private SmallCode svc; // The Safe Verification Code
 
     public CreditCard (Nif nif, String cardNum, Date expirDate, SmallCode svc) {
         this.nif = nif;
@@ -54,5 +54,22 @@ public class CreditCard {
                 cardNumb.equals(that.cardNumb) &&
                 expirDate.equals(that.expirDate) &&
                 svc.equals(that.svc);
+    }
+
+    //set methods
+    public void setNif(Nif nif) {
+        this.nif = nif;
+    }
+
+    public void setCardNumb(String cardNumb) {
+        this.cardNumb = cardNumb;
+    }
+
+    public void setExpirDate(Date expirDate) {
+        this.expirDate = expirDate;
+    }
+
+    public void setSvc(SmallCode svc) {
+        this.svc = svc;
     }
 }

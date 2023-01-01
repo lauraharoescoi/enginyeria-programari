@@ -2,6 +2,7 @@ package dummies;
 
 import data.Nif;
 import data.SmallCode;
+import data.exceptions.SmallCodeException;
 import exceptions.*;
 import publicadministration.Citizen;
 import services.CertificationAuthority;
@@ -24,8 +25,11 @@ public class CertificationAuthorityDumm implements CertificationAuthority {
     }
 
     @Override
-    public boolean checkPIN(Nif nif, SmallCode pin) throws NotValidPINException, ConnectException {
-        if(pin==null) throw new NotValidPINException();
-        return true;
+    public boolean checkPIN(Nif nif, SmallCode pin) throws NotValidPINException, ConnectException, SmallCodeException {
+        try{
+            pin.getCode();
+            return true;
+        }
+        catch (SmallCodeException e){throw new NotValidPINException();}
     }
 }
