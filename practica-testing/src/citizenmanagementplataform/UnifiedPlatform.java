@@ -77,7 +77,7 @@ public class UnifiedPlatform {
         if (res) {
             System.out.println("[P] S'envia el PIN a l'usuari amb DNI: " + nif.getNif());
         } else {
-            throw new ConnectException();
+            throw new ConnectException("Error de connexió");
         }
     }
 

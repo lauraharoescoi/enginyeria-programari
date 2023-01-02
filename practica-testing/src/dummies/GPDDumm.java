@@ -15,7 +15,7 @@ public class GPDDumm implements GPD {
 
     @Override
     public boolean verifyData(Citizen persData, Goal goal) throws IncorrectVerificationException, ConnectException {
-        if(!persData.equals(citizen)) throw new IncorrectVerificationException();
+        if(!persData.equals(citizen)) throw new IncorrectVerificationException("Camps introduits incorrectament");
 
         return true;
     }

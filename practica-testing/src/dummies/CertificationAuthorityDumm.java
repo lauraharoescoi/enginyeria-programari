@@ -18,9 +18,9 @@ public class CertificationAuthorityDumm implements CertificationAuthority {
 
     @Override
     public boolean sendPIN(Nif nif, Date date) throws NifNotRegisteredException, IncorrectValDateException, AnyMobileRegisteredException, ConnectException {
-        if(citizen.getNif()!=nif) throw new NifNotRegisteredException();
-        if(citizen.getExpDate()!=date) throw new IncorrectValDateException();
-        if(citizen.getMobileNumb()==null) throw new AnyMobileRegisteredException();
+        if(citizen.getNif()!=nif) throw new NifNotRegisteredException("NIF no existeix");
+        if(citizen.getExpDate()!=date) throw new IncorrectValDateException("Data d'expiració incorrecta");
+        if(citizen.getMobileNumb()==null) throw new AnyMobileRegisteredException("No s'ha introduit cap telèfon");
         return true;
     }
 
@@ -30,6 +30,6 @@ public class CertificationAuthorityDumm implements CertificationAuthority {
             pin.getCode();
             return true;
         }
-        catch (SmallCodeException e){throw new NotValidPINException();}
+        catch (SmallCodeException e){throw new NotValidPINException("PIN incorrecte");}
     }
 }
