@@ -96,20 +96,20 @@ public class UnifiedPlatformTest {
     @Test
     public void selectProceduresWithStepsMissing() {
         Throwable exception = assertThrows(ProceduralException.class, platform::selectProcedures);
-        assertEquals("Preconditions not accomplished",exception.getMessage());
+        assertEquals("El programa es troba en un estat incorrecte per la correcta execució",exception.getMessage());
     }
 
     @Test
     public void selectCriminalReportCertfWithStepsMissing() {
         Throwable exception = assertThrows(ProceduralException.class, platform::selectCriminalReportCertf);
-        assertEquals("Preconditions not accomplished",exception.getMessage());
+        assertEquals("El programa es troba en un estat incorrecte per la correcta execució",exception.getMessage());
     }
 
     @Test
     public void selectExistentAuthMethodWithStepsMissing() {
         byte method = 3;
         Throwable exception = assertThrows(ProceduralException.class, () -> platform.selectAuthMethod(method));
-        assertEquals("Preconditions not accomplished",exception.getMessage());
+        assertEquals("El programa es troba en un estat incorrecte per la correcta execució",exception.getMessage());
     }
 
     @Test
@@ -124,7 +124,7 @@ public class UnifiedPlatformTest {
         platform.injectAuthenticationMethod(new CertificationAuthorityDumm(citizen));
 
         Throwable exception = assertThrows(NotValidPINException.class, () -> platform.enterPIN(new SmallCode(null)));
-        assertEquals("guarra",exception.getMessage());
+        assertEquals("PIN incorrecte",exception.getMessage());
     }
 
     @Test
@@ -201,7 +201,7 @@ public class UnifiedPlatformTest {
         platform.selectAuthMethod(method);
         platform.injectAuthenticationMethod(new CertificationAuthorityDumm(citizen));
         Throwable exception = assertThrows(NifNotRegisteredException.class, () -> platform.enterNIFandPINobt(new Nif("12345678B"), valDate));
-        assertEquals("NIF not registered",exception.getMessage());
+        assertEquals("NIF no existeix",exception.getMessage());
     }
 
     @Test
@@ -214,7 +214,7 @@ public class UnifiedPlatformTest {
         platform.selectAuthMethod(method);
         platform.injectAuthenticationMethod(new CertificationAuthorityDumm(citizen));
         Throwable exception = assertThrows(IncorrectValDateException.class, () -> platform.enterNIFandPINobt(citizen.getNif(), new Date()));
-        assertEquals("guarra",exception.getMessage());
+        assertEquals("Data d'expiració incorrecta",exception.getMessage());
     }
 
     @Test
@@ -230,7 +230,7 @@ public class UnifiedPlatformTest {
         noNumCitz.setPhoneNumber(null);
         platform.injectAuthenticationMethod(new CertificationAuthorityDumm(noNumCitz));
         Throwable exception = assertThrows(AnyMobileRegisteredException.class, () -> platform.enterNIFandPINobt(noNumCitz.getNif(), valDate));
-        assertEquals("guarra",exception.getMessage());
+        assertEquals("No s'ha introduit cap telèfon",exception.getMessage());
     }
 
     @Test
@@ -255,6 +255,6 @@ public class UnifiedPlatformTest {
 
         Throwable exception = assertThrows(NotValidPaymentDataException.class, () -> platform.enterCardData(credC2
         ));
-        assertEquals("guarra",exception.getMessage());
+        assertEquals("Data d'expiració incorrecta",exception.getMessage());
     }
 }

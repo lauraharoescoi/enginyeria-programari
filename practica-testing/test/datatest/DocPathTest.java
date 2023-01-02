@@ -16,7 +16,7 @@ public class DocPathTest {
         void testnullThrowsBadPathException(){
             DocPath path = new DocPath(null);
             Throwable exception = assertThrows(BadPathException.class, path::getPath);
-            assertEquals("The path does not exist", exception.getMessage());
+            assertEquals("No s'ha introduït cap adreça", exception.getMessage());
         }
 
         @Test
