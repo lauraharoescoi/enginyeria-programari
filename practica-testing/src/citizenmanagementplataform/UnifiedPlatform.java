@@ -154,7 +154,7 @@ public class UnifiedPlatform {
 
     // Other internal operations (not required)
     private void printDocument () throws BadPathException, PrintingException, ExecutionControl.NotImplementedException {
-        if (!new File(localPath.getPath()).exists()) throw new BadPathException();
+        if (!new File(localPath.getPath()).exists()) throw new BadPathException("L'adreça no existeix");
         System.out.println("[P] S'envia el document per a la seva impresió");
     }
 
